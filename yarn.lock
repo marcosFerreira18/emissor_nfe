@@ -3860,6 +3860,11 @@ jetifier@^1.6.2:
   resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-1.6.4.tgz#6159db8e275d97980d26162897a0648b6d4a3222"
   integrity sha512-+f/4OLeqY8RAmXnonI1ffeY1DR8kMNJPhv5WMFehchf7U71cjMQVKkOz1n6asz6kfVoAqKNWJz1A/18i18AcXA==
 
+jetifier@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-1.6.6.tgz#fec8bff76121444c12dc38d2dad6767c421dab68"
+  integrity sha512-JNAkmPeB/GS2tCRqUzRPsTOHpGDah7xP18vGJfIjZC+W2sxEHbxgJxetIjIqhjQ3yYbYNEELkM/spKLtwoOSUQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -5317,6 +5322,11 @@ react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
   integrity sha512-gbBVYR2p8mnriqAwWx9LbuUrShnAuSCNnuPGyc7GJrMVQtPDAh8iLpv7FRuMPFb56KkaVZIYSz1PrjI9q0QPCw==
 
+react-native-document-picker@^3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.5.3.tgz#f749d329b8a85a4a599253dafe8c5c1c0602388b"
+  integrity sha512-y1H7LKa8+VTtaBo46HNEz62IbRh6E4YMgdKi4+UFp33OTddzk0JAwcDT//vWI6tvB+u4B1AsamTdbI86FYeQAQ==
+
 react-native-gesture-handler@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.4.1.tgz#c38d9e57637b95e221722a79f2bafac62e3aeb21"
@@ -5374,15 +5384,15 @@ react-native-vector-icons@^6.6.0:
     prop-types "^15.6.2"
     yargs "^13.2.2"
 
-react-native-view-pdf@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/react-native-view-pdf/-/react-native-view-pdf-0.10.1.tgz#aca2bd08eb5b7492f6065495c629561f759a9f42"
-  integrity sha512-L5eCYBtnRpCUNPhXdWQiwK6YLWOqvsW9vW9BMSrkODrs1VUTwK8x5XK/7LW/N8R9GMmpV8Cxo3og76B3MuZwOQ==
+react-native-view-pdf@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/react-native-view-pdf/-/react-native-view-pdf-0.10.2.tgz#2f6e6761b0ad4255187c3bd1e31e79ee85250f41"
+  integrity sha512-xpF1MQwTYDyReagDF8KuDxGJYxOOBCI53L+qDzsgmu2tBHS9uZTy5zhjxYzs9Fl7mh5fEaD+Ck00KU7+jX52/Q==
 
-react-native-webview@^7.5.1:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.5.1.tgz#01b026c1110d7548123460cc640fb1d4227a0f54"
-  integrity sha512-lFpa4m8CMapk6vbZf2GiQDGxsQSRrKoVElTFCkDI5BEl5/a14ClASnJdIyr6U6uYj7ZjcAYsaqNtz86BJqyRVQ==
+react-native-webview@^10.3.2:
+  version "10.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-10.3.2.tgz#c634946152099c95d521a3abc71065d1d642e192"
+  integrity sha512-4A8FKL/puonkqQ1FOKd+iPulqRXCG4inmIK4pQ60zv9Ua+YkBKLxxofQiCvRwIXSSgAXYT+AE3rOHr3bx4A/cw==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
@@ -5741,10 +5751,10 @@ rimraf@~2.2.6:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
-rn-fetch-blob@^0.11.2:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/rn-fetch-blob/-/rn-fetch-blob-0.11.2.tgz#bdc483bf1b0c3810d457983494a11fbada446679"
-  integrity sha512-oKszdNtA7vZ56d0Rfr+RDEUexwlZxu/HOqwULa36PRHhQsTO5ia7uKk+va3WzuwYxzhF9e0bY8n3k+GC6Df14A==
+rn-fetch-blob@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/rn-fetch-blob/-/rn-fetch-blob-0.12.0.tgz#ec610d2f9b3f1065556b58ab9c106eeb256f3cba"
+  integrity sha512-+QnR7AsJ14zqpVVUbzbtAjq0iI8c9tCg49tIoKO2ezjzRunN7YL6zFSFSWZm6d+mE/l9r+OeDM3jmb2tBb2WbA==
   dependencies:
     base-64 "0.1.0"
     glob "7.0.6"

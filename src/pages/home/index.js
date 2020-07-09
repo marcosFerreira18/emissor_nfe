@@ -101,7 +101,7 @@ export default class Home extends Component {
 
                             <View style={styles.imgEmpresaContainer} />
                             <View>
-                                <Icon name="menu" size={30} color="#FFF" />
+                                {/* <Icon name="menu" size={30} color="#FFF" /> */}
                                 <Text style={styles.nomeEmpresa}>Olá,</Text>
                                 <Text style={styles.nomeUser} >{this.state.data.user.name}</Text>
                                 <Text style={styles.nomeEmpresa}>{this.state.data.company.name}</Text>
@@ -109,12 +109,12 @@ export default class Home extends Component {
                                     <Text>SAIR</Text>
                                 </TouchableOpacity>
                             </View>
-                            <View style={styles.containerImgEmpresa} >
+                            {/* <View style={styles.containerImgEmpresa} >
                                 <Image source={{ uri: this.state.data.user.img_link }} style={styles.imgUser} />
-                            </View>
+                            </View> */}
                             <TouchableOpacity onPress={() => this.atualizar()}>
-                                    <Text>ATUALIZAR</Text>
-                                </TouchableOpacity>
+                                <Text>ATUALIZAR</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
 
@@ -156,6 +156,12 @@ export default class Home extends Component {
                                 :
                                 null
                         }
+
+                        <TouchableOpacity >
+                            <Text>
+                                Cadastrar Certificado
+                            </Text>
+                        </TouchableOpacity>
                         <View style={footerMenu.container}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('Emitter')} style={footerMenu.nfeBtn}>
                                 <Image source={iconNfe} style={footerMenu.iconNfe} />

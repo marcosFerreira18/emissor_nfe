@@ -64,12 +64,12 @@ export default class Login extends Component {
               </View>
 
 
-              {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('App')} style={[styles.btn, { backgroundColor: '#3CAD4C', }]}> */}
               <TouchableOpacity onPress={() => this.logar()} style={[styles.btn, { backgroundColor: '#3CAD4C', }]}>
                 <Text style={[styles.textBtn, { color: '#FFFFFF' }]}>Entrar</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={[styles.btn, { backgroundColor: '#FFF', }]}>
+              <TouchableOpacity style={[styles.btn, { backgroundColor: '#FFF', }]}
+                onPress={() => this.props.navigation.navigate({ routeName: 'Register' })}>
                 <Text style={[styles.textBtn, { color: '#3CAD4C' }]}>Crie sua conta</Text>
               </TouchableOpacity>
             </View>
@@ -77,7 +77,7 @@ export default class Login extends Component {
           </KeyboardAvoidingView>
           <View>
             <TouchableOpacity style={{ borderBottomWidth: 2 }}>
-              <Text>Recuperar minha senha</Text>
+              <Text>Recuperar minha senh</Text>
             </TouchableOpacity>
           </View>
         </LinearGradient>

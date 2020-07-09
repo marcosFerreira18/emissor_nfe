@@ -15,12 +15,20 @@ const isSignedIn = async () => {
 }
 
 export default class App extends React.Component {
+    state = {
+        signLoaded: false
+    }
+    async componentDidMount() {
+        // console.log('okokokokok', await isSignedIn())
+        this.setState({ signLoaded: await isSignedIn })
+    }
 
     render() {
-        // const { signLoaded, signed } = this.state;
+        const { signLoaded, signed } = this.state;
         // if (!signLoaded) {
         //     return null;
         // }
+
         const Layout = createRootNavigator(false);
         return <Layout />
     }

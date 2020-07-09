@@ -6,7 +6,7 @@ export const login = async (username, password) => {
 
     api.defaults.headers.common['Authorization'] = 'Basic ' + encode(username + ':' + password);
     console.log(encode(encode(username + ':' + password)))
-    return await api.post('/token', {})
+    return await api.post('/token/', {})
         .then(({ data }) => {
             console.log(data)
             return data

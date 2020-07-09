@@ -10,3 +10,21 @@ export const emitir = async ({ valor, qtd }) => {
         console.log(error.response.data);
     });
 }
+
+export const getEndereco = async (cep) => {
+    return await fetch('https://viacep.com.br/ws/' + cep.replace(/[^0-9]/g, '') + '/json/')
+        .then((response) => response.json())
+        .then((responseJson) => {
+            return responseJson
+        })
+        .catch((error) => {
+
+            return {
+                cep: '',
+                logradouro: '',
+                bairro: '',
+                localidade: '',
+                uf: '',
+            }
+        });
+}
