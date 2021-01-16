@@ -14,7 +14,6 @@ function Item({ full_name, img_link, telephone }) {
         <Text style={cardClient.clientName}>{full_name}</Text>
         <Text style={cardClient.clientInfo}>{telephone}</Text>
       </View>
-      {/* <Text style={cardProduct.productPrice}>{price}/{un}</Text> */}
     </View>
 
   );

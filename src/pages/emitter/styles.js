@@ -24,15 +24,15 @@ export const clientContent = StyleSheet.create({
         color: '#C4C4C4'
     },
     selectLabel: {
-        lineHeight: 10,
-        fontSize: 10,
+        lineHeight: 13,
+        fontSize: 13,
         fontWeight: "bold",
         color: '#E5E7E6'
     },
     slectClient: {
         width: width * .9,
         height: 60,
-        backgroundColor: '#1B63FF',
+        backgroundColor: '#3CAD4C',
         padding: 10,
         paddingTop: 5,
         paddingLeft: 20,
@@ -51,19 +51,20 @@ export const clientContent = StyleSheet.create({
 })
 export const productContent = StyleSheet.create({
     qtd: {
-        width: width * .15,
+        width: width * .20,
         height: 60,
-        backgroundColor: '#1B63FF',
+        backgroundColor: '#3CAD4C',
         padding: 10,
         borderRadius: 5,
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        marginRight: 10,
     },
     btnAdd: {
-        width: width * .13,
-        height: 60,
+        width: width * .20,
+        height: 130,
         backgroundColor: '#F0F4FC',
-        borderColor: '#1B63FF',
+        borderColor: '#3CAD4C',
         borderWidth: 2,
         borderRadius: 5,
         flexDirection: "row",
@@ -72,28 +73,39 @@ export const productContent = StyleSheet.create({
         elevation: 3,
     },
     un: {
-        width: width * .15,
+        width: width * .20,
         height: 60,
-        backgroundColor: '#1B63FF',
+        backgroundColor: '#3CAD4C',
         padding: 10,
         borderRadius: 5,
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        marginRight: 10,
+    },
+    pn: {
+        width: width * .25,
+        height: 60,
+        backgroundColor: '#3CAD4C',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginRight: 10,
     },
     selectValue: {
-        fontSize: 12,
-        color: '#C4C4C4'
+        fontSize: 18,
+        color: '#0C0D0C'
     },
     selectLabel: {
-        lineHeight: 10,
-        fontSize: 10,
+        lineHeight: 14,
+        fontSize: 13,
         fontWeight: "bold",
         color: '#E5E7E6'
     },
     slectProduct: {
-        width: width * .40,
+        width: width * .7,
         height: 60,
-        backgroundColor: '#1B63FF',
+        backgroundColor: '#3CAD4C',
         padding: 10,
         paddingTop: 5,
         paddingLeft: 20,
@@ -125,7 +137,7 @@ export const nfeContent = StyleSheet.create({
     btnEmitter: {
         width: width * .9,
         height: 60,
-        backgroundColor: '#1B63FF',
+        backgroundColor: '#3CAD4C',
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 5,

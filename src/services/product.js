@@ -8,7 +8,7 @@ export const listProducts = async () => {
 
     // console.log(JSON.parse(data).token)
     api.defaults.headers.common['token'] = JSON.parse(data).token
-    return await api.get('/products', {})
+    return await api.get('/company/product/', {})
         .then(({ data }) => {
             // console.log(data)
             return data.data

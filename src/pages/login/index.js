@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { login } from '../../services/auth';
-
+import Api from '../../providers/api'
 import { styles } from './styles.js'
 import logo from '../../img/logo_pl.png'
 import bg from '../../img/bg_pl.png'
@@ -24,15 +24,28 @@ export default class Login extends Component {
   }
 
   logar = async () => {
-    await login(this.state.username, this.state.password)
-      .then(dataUser => {
+    // await login(this.state.username, this.state.password)
+    //   .then(async (dataUser) => {
+    //     if (dataUser.data.token) {
+    //       await AsyncStorage.setItem(TOKEN_KEY, JSON.stringify(dataUser.data))
 
-        if (dataUser.data.token) {
-          AsyncStorage.setItem(TOKEN_KEY, JSON.stringify(dataUser.data))
-            .then(() => this.props.navigation.navigate('Home'))
-        }
-        console.log(dataUser.data.token);
-      })
+    //     }
+    //     let data = await AsyncStorage.getItem(TOKEN_KEY);
+    //     console.log("esse print mesmo: ", dataUser);
+    //     this.props.navigation.navigate('Home')
+    //   })
+    await login(this.state.username, this.state.password)
+      .then(
+        async ({ data }) => {
+          const { token } = data
+          console.log("home",token)
+          await AsyncStorage.setItem(TOKEN_KEY, JSON.stringify({
+            token
+          }))
+          await Api.loadConfig(token)
+          // loginLead(user.name, user.email)
+          this.props.navigation.navigate('App')
+        })
   }
 
   render() {
@@ -75,11 +88,11 @@ export default class Login extends Component {
             </View>
 
           </KeyboardAvoidingView>
-          <View>
+          {/* <View>
             <TouchableOpacity style={{ borderBottomWidth: 2 }}>
-              <Text>Recuperar minha senh</Text>
+              <Text>Recuperar minha senha</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </LinearGradient>
       </ImageBackground>
 

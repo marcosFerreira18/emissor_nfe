@@ -5,11 +5,11 @@ const { height, width } = Dimensions.get('window');
 
 
 export const footerMenu = StyleSheet.create({
-    iconMenu:{
+    iconMenu: {
         width: 30,
         height: 30,
     },
-    iconNfe:{
+    iconNfe: {
         width: 80,
         height: 80,
         borderRadius: 80,
@@ -21,7 +21,7 @@ export const footerMenu = StyleSheet.create({
         elevation: 10,
         position: "absolute",
         top: -35,
-        left: (width-70)/2,
+        left: (width - 70) / 2,
         backgroundColor: "#1B63FF",
         justifyContent: "center",
         alignItems: "center",
@@ -29,53 +29,47 @@ export const footerMenu = StyleSheet.create({
     container: {
         flexDirection: "row",
         width,
-        height: 70,
+        height: 65,
         backgroundColor: '#FFF',
-        borderRadius: 5,
-        position: "absolute",
-        bottom: height-(height-50),
         justifyContent: "space-between",
         paddingHorizontal: 35,
         alignItems: "center",
         borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-        elevation: 20,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.5,
         shadowRadius: 2,
-        alignItems: "center",
     }
 })
 
 export const cardEmission = StyleSheet.create({
-    date:{
+    date: {
         fontSize: 10
     },
-    price:{
-        fontSize:19,
+    price: {
+        fontSize: 19,
         fontWeight: "bold"
     },
-    clientName:{
-        fontSize:13
-    },   
-    nfeInfo:{
+    clientName: {
+        fontSize: 13
+    },
+    nfeInfo: {
         marginLeft: 10
     },
-    clientImage:{
+    clientImage: {
         width: 60,
-        height:60,
+        height: 60,
         borderRadius: 5,
     },
-    container:{
+    container: {
         flexDirection: "row",
         alignItems: "center",
         paddingHorizontal: 20,
-        width: width *.9,
-        marginHorizontal: width*.05,
+        width: width * .9,
+        marginHorizontal: width * .05,
         height: 100,
-        borderRadius:10,
-        elevation:4
+        borderRadius: 10,
+        elevation:1
     }
 })
 
@@ -99,8 +93,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         borderRadius: 5,
         elevation: 10,
-        position: "absolute",
-        top: -30,
+        marginTop: -30,
         justifyContent: "space-between",
         paddingHorizontal: 35,
         alignItems: "center"
@@ -108,8 +101,8 @@ export const styles = StyleSheet.create({
     containerHome: {
         width,
         height: '80%',
-        marginTop: '40%',
-        justifyContent: "center",
+        marginTop: "-1.5%",
+        justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: '#FFF',
         borderTopLeftRadius: 10,
@@ -117,9 +110,9 @@ export const styles = StyleSheet.create({
     },
     imgEmpresaContainer: {
         width,
-        height: '180%',
+        height: '100%',
         position: "absolute",
-        opacity: .6,
+        opacity: .3,
         backgroundColor: "#000",
     },
     imgEmpresa: {
@@ -127,6 +120,7 @@ export const styles = StyleSheet.create({
         // resizeMode: "contain",
         width,
         height: '180%',
+        opacity: .3,
     },
     imgUser: {
         width: 45,
@@ -141,20 +135,20 @@ export const styles = StyleSheet.create({
         elevation: 10
     },
     containerTop: {
-        position: "absolute",
-        height: '30%',
-        backgroundColor: '#FFF'
+        width,
+        height: '20%',
+        backgroundColor: "#444444",
     },
     infoEmpresa: {
         width,
         flexDirection: "row",
         padding: 10,
         justifyContent: "space-between",
-        // alignItems: "center"
+        height: "100%"
     },
     nomeEmpresa: {
-        fontSize: 12,
-        color: "#FFF"
+        fontSize: 24,
+        color: "#FFF",
     },
     nomeUser: {
         fontSize: 18,

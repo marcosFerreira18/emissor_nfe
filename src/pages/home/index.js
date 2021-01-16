@@ -78,7 +78,8 @@ export default class Home extends Component {
     }
 
     logOut = async () => {
-        await AsyncStorage.removeItem(TOKEN_KEY).then(() => this.props.navigation.navigate("Auth"));
+        await AsyncStorage.clear();
+        this.props.navigation.navigate("Auth")
     }
 
     exibirDanfe = (item) => {
@@ -96,12 +97,9 @@ export default class Home extends Component {
                 <SafeAreaView>
                     <View style={styles.containerTop}>
                         <View style={styles.infoEmpresa} >
-
-                            <Image source={{ uri: this.state.data.company.img_capa }} style={styles.imgEmpresa} blurRadius={4} />
-
-                            <View style={styles.imgEmpresaContainer} />
+                            <Image source={{ uri: this.state.data.company.img_capa }} style={styles.imgEmpresa} blurRadius={2} />
+                            {/* <View style={styles.imgEmpresaContainer} /> */}
                             <View>
-                                {/* <Icon name="menu" size={30} color="#FFF" /> */}
                                 <Text style={styles.nomeEmpresa}>Olá,</Text>
                                 <Text style={styles.nomeUser} >{this.state.data.user.name}</Text>
                                 <Text style={styles.nomeEmpresa}>{this.state.data.company.name}</Text>
@@ -109,18 +107,19 @@ export default class Home extends Component {
                                     <Text>SAIR</Text>
                                 </TouchableOpacity>
                             </View>
-                            {/* <View style={styles.containerImgEmpresa} >
-                                <Image source={{ uri: this.state.data.user.img_link }} style={styles.imgUser} />
-                            </View> */}
+
                             <TouchableOpacity onPress={() => this.atualizar()}>
-                                <Text>ATUALIZAR</Text>
+                                {/* <Text>ATUALIZAR</Text> */}
+                                <Icon name="refresh" size={30} color="#FFF" />
                             </TouchableOpacity>
                         </View>
                     </View>
 
 
                     <LinearGradient
-                        colors={['#FFF', '#E5E7E5']} style={[styles.containerHome]}>
+                        colors={['#FFF', '#E5E7E5']}
+                        style={[styles.containerHome]}
+                    >
                         <View style={styles.containerStats}>
                             <View style={styles.statsItem}>
                                 <Text style={styles.statsTitle}>
@@ -144,7 +143,7 @@ export default class Home extends Component {
 
                                 <FlatList
                                     data={this.state.data.emissions}
-                                    contentContainerStyle={{ paddingBottom: 5, paddingTop: 50 }}
+                                    contentContainerStyle={{ paddingBottom: 5, paddingTop: 0, marginTop:-10 }}
                                     ItemSeparatorComponent={Separator}
                                     renderItem={({ item }) =>
                                         <TouchableOpacity onPress={() => this.exibirDanfe(item)}>
@@ -157,11 +156,11 @@ export default class Home extends Component {
                                 null
                         }
 
-                        <TouchableOpacity >
+                        {/* <TouchableOpacity >
                             <Text>
                                 Cadastrar Certificado
                             </Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                         <View style={footerMenu.container}>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('Emitter')} style={footerMenu.nfeBtn}>
                                 <Image source={iconNfe} style={footerMenu.iconNfe} />
@@ -180,7 +179,7 @@ export default class Home extends Component {
                         </View>
                     </LinearGradient>
 
-                </SafeAreaView>
+                </SafeAreaView >
                 :
                 null
         );

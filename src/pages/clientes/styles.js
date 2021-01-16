@@ -17,7 +17,6 @@ export const cardClient = StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-evenly",
         width: (width - 25),
         height: (width - 25) * .3,
         backgroundColor: '#FFF',

@@ -16,17 +16,31 @@ export default class Register extends Component {
 
   state = {
     fantasy_name: '',
-    name: 'Marcos Ferreira',
-    cnpj_cpf: '14138810765',
-    ie: '123456789',
-    unit_type: 'Matriz',
-    email: 'marcos.felipe.gf@gmail.com',
-    telephone: '27996207525',
+    name: '',
+    cnpj_cpf: '',
+    ie: '',
+    unit_type: '',
+    email: '',
+    telephone: '',
     environment_id: '2',
     tipo: '1',
-    password: '123456',
-    confirme_senha: '123456',
+    password: '',
+    confirme_senha: '',
   }
+
+  // state = {
+  //   fantasy_name: '',
+  //   name: 'Marcos Ferreira',
+  //   cnpj_cpf: '14138810765',
+  //   ie: '123456789',
+  //   unit_type: 'Matriz',
+  //   email: 'marcos.felipe.gf@gmail.com',
+  //   telephone: '27996207525',
+  //   environment_id: '2',
+  //   tipo: '1',
+  //   password: '123456',
+  //   confirme_senha: '123456',
+  // }
 
   static navigationOptions = {
     // headerTransparent: true

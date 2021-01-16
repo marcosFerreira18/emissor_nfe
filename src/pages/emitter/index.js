@@ -37,6 +37,7 @@ export default class Product extends Component {
         title: 'Emitir NF-e',
     };
     state = {
+        showLoading: false,
         clients: [],
         products: [],
         selectedClient: null,
@@ -53,8 +54,9 @@ export default class Product extends Component {
 
     addProd = async (newProd) => {
         if (parseInt(this.state.qtdCurrent) > 0) {
-            newProd.amount = this.state.qtdCurrent
-            newProd.product_id = newProd.id
+            newProd.amount = this.state.qtdCurrent;
+            newProd.product_id = newProd.id;
+            newProd.price = parseFloat(this.state.price.replace(",", "."));
             await this.setState({ selectedProducts: [...this.state.selectedProducts, newProd], qtdCurrent: '' })
             console.log(this.state.selectedProducts)
             this.calcTotal()
@@ -84,7 +86,7 @@ export default class Product extends Component {
     getDataToEmitter = async () => {
         let finalData = []
         await this.state.selectedProducts.forEach((el) => {
-            let obj = { product_id: el.product_id.toString(), amount: el.amount }
+            let obj = { product_id: el.product_id.toString(), amount: el.amount, price: el.price }
             finalData.push(obj)
         })
 
@@ -99,17 +101,22 @@ export default class Product extends Component {
     //         })
     // }
 
+    exibirDanfe = (item) => {
+        // console.log(item)
+        this.props.navigation.navigate('WebView', { danfe: item.danfe })
+    }
+
     render() {
         return (
             <LinearGradient
                 colors={['#FFF', '#E4EDFF']}
-                style={{ width: '100%', height, alignItems: 'center', justifyContent: 'space-around' }}>
+                style={{ width: '100%', height, alignItems: 'center', justifyContent: 'space-between' }}>
 
                 <ScrollView style={{ flex: 1 }}>
                     <View style={clientContent.container}>
                         <Text style={clientContent.title}>Informações do cliente</Text>
                         <View style={clientContent.slectClient}>
-                            <View style={{ height: 50, justifyContent: "space-evenly", width: width * .8 }}>
+                            <View style={{ height: 50, justifyContent: "space-evenly", width: width * .8, paddingTop: 10 }}>
                                 <Text style={clientContent.selectLabel}>
                                     Cliente
                                 </Text>
@@ -168,53 +175,78 @@ export default class Product extends Component {
                     <View style={productContent.container}>
                         <Text style={productContent.title}>Produtos</Text>
                         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                            <View style={productContent.slectProduct}>
-                                <View style={{ height: 50, justifyContent: "space-evenly", width: width * .3 }}>
-                                    <Text style={productContent.selectLabel}>
-                                        Produto
+                            <View>
+                                <View style={productContent.slectProduct}>
+                                    <View style={{ height: 50, justifyContent: "space-evenly", width: width * .65, paddingTop: 10 }}>
+                                        <Text style={productContent.selectLabel}>
+                                            Produto
                                     </Text>
-                                    <Picker
-                                        selectedValue={this.state.selectedProduct}
-                                        style={{ height: 50, width: '100%', color: '#FFF' }}
+                                        <Picker
+                                            selectedValue={this.state.selectedProduct}
+                                            style={{ height: 50, width: '100%', color: '#FFF' }}
 
-                                        onValueChange={(selectedProduct, itemIndex) =>
-                                            this.setState({ selectedProduct })
-                                        }>
+                                            onValueChange={(selectedProduct, itemIndex) =>
+                                                this.setState({ selectedProduct })
+                                            }>
 
-                                        {
-                                            this.state.products.map((item, index) => {
-                                                return (<Picker.Item label={item.name} value={item} />)
-                                            })
-                                        }
+                                            {
+                                                this.state.products.map((item, index) => {
+                                                    return (<Picker.Item label={item.name} value={item} />)
+                                                })
+                                            }
 
-                                    </Picker>
+                                        </Picker>
+                                    </View>
+                                    {/* <IconM name={'arrow-drop-down'} size={40} color="#C4C4C4" /> */}
                                 </View>
-                                {/* <IconM name={'arrow-drop-down'} size={40} color="#C4C4C4" /> */}
+                                <View style={{ flexDirection: "row", justifyContent: "flex-start", marginTop: 10 }}>
+
+                                    <View style={productContent.qtd}>
+                                        <Text style={productContent.selectLabel}>
+                                            Quantidade
+                                        </Text>
+                                        <TextInput
+                                            style={productContent.selectValue}
+                                            value={this.state.qtdCurrent}
+                                            onChangeText={qtdCurrent => this.setState({ qtdCurrent })}
+                                            placeholder={'0'}
+                                            keyboardType={'numeric'}
+                                        />
+                                    </View>
+                                    <View style={productContent.un}>
+                                        <Text style={productContent.selectLabel}>
+                                            Unidade
+                                        </Text>
+                                        <Text style={productContent.selectValue}>
+                                            {this.state.selectedProduct ? this.state.selectedProduct.unit : ' - '}
+                                        </Text>
+                                    </View>
+                                    <View style={productContent.pn}>
+                                        <Text style={productContent.selectLabel}>
+                                            Preço Unitário
+                                        </Text>
+                                        <TextInput
+                                            style={productContent.selectValue}
+                                            value={this.state.price}
+                                            onChangeText={price => this.setState({ price })}
+                                            placeholder={'0,00'}
+                                            keyboardType={'numeric'}
+                                        />
+                                    </View>
+                                </View>
+
                             </View>
-                            <View style={productContent.qtd}>
-                                <Text style={productContent.selectLabel}>
-                                    Qtd
-                                    </Text>
-                                <TextInput
-                                    style={productContent.selectValue}
-                                    value={this.state.qtdCurrent}
-                                    onChangeText={qtdCurrent => this.setState({ qtdCurrent })}
-                                    placeholder={'0'}
-                                    keyboardType={'numeric'}
-                                />
-                            </View>
-                            <View style={productContent.un}>
-                                <Text style={productContent.selectLabel}>
-                                    UN
-                                    </Text>
-                                <Text style={productContent.selectValue}>
-                                    {this.state.selectedProduct ? this.state.selectedProduct.unit : ' - '}
-                                </Text>
-                            </View>
-                            <TouchableOpacity onPress={() => this.addProd(this.state.selectedProduct)} style={productContent.btnAdd}>
-                                <IconM name={'add'} size={30} color="#1B63FF" />
+
+                            <TouchableOpacity
+                                disabled={this.state.selectedProducts.length > 0}
+                                onPress={() => this.addProd(this.state.selectedProduct)}
+                                style={[productContent.btnAdd, { borderColor: this.state.selectedProducts.length > 0 ? "#DDD" : "#3CAD4C" }]}
+
+                            >
+                                <IconM name={'add'} size={50} color={this.state.selectedProducts.length > 0 ? "#DDD" : "#3CAD4C"} />
                             </TouchableOpacity>
                         </View>
+
 
                         <FlatList
                             data={this.state.selectedProducts}
@@ -234,7 +266,25 @@ export default class Product extends Component {
                             </Text>
 
                         </View>
-                        <TouchableOpacity onPress={async () => emitirNota({ client_id: this.state.selectedClient.id.toString(), products: await this.getDataToEmitter() })} style={nfeContent.btnEmitter}>
+                        <TouchableOpacity
+                            onPress={
+                                async () => {
+
+                                    this.setState({ showLoading: true })
+                                    emitirNota(
+                                        {
+                                            client_id: this.state.selectedClient.id.toString(),
+                                            products: await this.getDataToEmitter()
+                                        }
+                                    ).then((item) => {
+                                        // console.log("SUA NOTA EMITIDA COM SUCESSO: ", item)
+
+                                        this.setState({ showLoading: false })
+                                        this.exibirDanfe(item)
+                                    })
+                                }
+                            }
+                            style={nfeContent.btnEmitter}>
                             <Text style={nfeContent.txtBtn}>
                                 Emitir NF-e
                             </Text>
@@ -243,7 +293,22 @@ export default class Product extends Component {
 
 
                 </ScrollView>
+                <Modal show={this.state.showLoading} />
             </LinearGradient>
         );
     }
+}
+
+
+const Modal = ({ show = false }) => {
+
+    return show ?
+        (
+            <View style={{ width, height, justifyContent: "center", alignItems: "center", backgroundColor: "#111111BB", position: "absolute" }}>
+                <Text style={{ fontSize: 28, fontWeight: "bold", color: "#FFF" }}>
+                    Emitindo Nota...
+            </Text>
+            </View>
+        )
+        : null
 }

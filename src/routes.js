@@ -12,14 +12,12 @@ import Upload from './pages/uploadImages';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
 
 const AppStack = createStackNavigator({
-  Upload,
   Home,
   Product,
   Clientes,
   Nfe,
   WebView,
-  Emitter,
-  Upload
+  Emitter
 });
 const AuthStack = createStackNavigator({
   Login,

@@ -8,6 +8,7 @@ const TOKEN_KEY = "@UserData";
 const isSignedIn = async () => {
     try {
         const token = await AsyncStorage.getItem(TOKEN_KEY);
+        console.log("srcIndex", token)
         return (token !== null) ? true : false;
     } catch (e) {
         // error reading value
@@ -20,16 +21,13 @@ export default class App extends React.Component {
     }
     async componentDidMount() {
         // console.log('okokokokok', await isSignedIn())
-        this.setState({ signLoaded: await isSignedIn })
+        await this.setState({ signLoaded: await isSignedIn() })
     }
 
     render() {
         const { signLoaded, signed } = this.state;
-        // if (!signLoaded) {
-        //     return null;
-        // }
 
-        const Layout = createRootNavigator(false);
+        const Layout = createRootNavigator(signLoaded);
         return <Layout />
     }
 }

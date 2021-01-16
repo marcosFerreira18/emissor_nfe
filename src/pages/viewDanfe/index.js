@@ -1,13 +1,13 @@
 import React from 'react';
 import PDFView from 'react-native-view-pdf';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 
 import { getDanfe } from '../../services/getDanfe';
 
 const resources = {
   file: Platform.OS === 'ios' ? 'test-pdf.pdf' : '/sdcard/Download/test-pdf.pdf',
-  url: 'http://nfe.webmaniabr.com/danfe/32191100003473731781559200000000051117592665/',
+  url: 'https://nfe.webmaniabr.com/danfe/32191100003473731781559200000000051117592665/',
   base64: 'JVBERi0xLjMKJcfs...',
 };
 
@@ -15,8 +15,8 @@ export default class App extends React.Component {
 
 
   state = {
-   
-    dataDanfe:{ danfe: 'http://nfe.webmaniabr.com/danfe/32191100003473731781559200000000051117592665/',}
+    danfeOK: false,
+    dataDanfe: { danfe: 'https://nfe.webmaniabr.com/danfe/32191100003473731781559200000000051117592665/', }
   };
 
   static navigationOptions = {
@@ -24,25 +24,43 @@ export default class App extends React.Component {
   };
 
   async componentDidMount() {
-    console.log(this.props.navigation.state.params.id)
-    this.setState({ dataDanfe: await getDanfe(this.props.navigation.state.params.id) })
+    let id = this.props.navigation.state.params.id
+    let danfe = this.props.navigation.state.params.danfe
+
+    if (id == null) {
+      console.log("---->>", danfe)
+      // this.setState({ dataDanfe: { danfe } })
+
+      this.setState({ danfeOK: false })
+    } else {
+      await getDanfe(id).then((dataDanfe) => {
+        this.setState({ dataDanfe })
+        this.setState({ danfeOK: true })
+      })
+
+    }
+
   }
 
   render() {
     const resourceType = 'url';
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         {/* Some Controls to change PDF resource */}
-        <PDFView
-          fadeInDuration={250.0}
-          style={{ flex: 1 }}
-          resource={this.state.dataDanfe['danfe']}
-          resourceType={resourceType}
-          onLoad={() => console.log(`PDF rendered from ${resourceType}`)}
-          onError={(error) => console.log('Cannot render PDF', error)}
-        />
+        {!this.state.danfeOK ?
+          <Text style={{ fontWeight: "bold", fontSize: 18 }}>Carregando DANFE...</Text> :
+          <PDFView
+            fadeInDuration={250.0}
+            style={{ flex: 1, width: '100%', height:'100 %'}}
+            resource={this.state.dataDanfe['danfe']}
+            resourceType={resourceType}
+            onLoad={() => console.log(`PDF rendered from ${resourceType}`)}
+            onError={(error) => console.log('Cannot render PDF', error)}
+
+          />}
       </View>
     );
   }
 }
+
