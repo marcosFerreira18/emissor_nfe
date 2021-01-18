@@ -1,45 +1,75 @@
+import React  from 'react';
+import {View, Text} from 'react-native';
+
 import Login from './pages/login';
 import Home from './pages/home';
 import Product from './pages/product';
 import Clientes from './pages/clientes';
-import Emitter from './pages/emitter';
+// import Emitter1 from './pages/emitter';
+import Emitter from './pages/emmiter2';
+import ClientsList from './pages/emmiter2/listClientes';
+import ProductsList from './pages/emmiter2/listProducts';
+import InputNumber from './pages/emmiter2/inputNumber';
+import InputQuantity from './pages/emmiter2/inputQuantity';
 import Nfe from './pages/nfe';
 import WebView from './pages/viewDanfe';
 import Register from './pages/register';
 import Address from './pages/address';
 import Upload from './pages/uploadImages';
 
-import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
+// import {EmmiterProvider} from './pages/emmiter2/emmiterContext';
 
-const AppStack = createStackNavigator({
+// const Emitter = () => (
+//   <EmmiterProvider>
+//     <Emitter1 />
+//   </EmmiterProvider>
+// );
+
+// const ClientsList = () => (
+//   <EmmiterProvider>
+//     <ClientsListComponent />
+//   </EmmiterProvider>
+// );
+
+import {
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator,
+} from 'react-navigation';
+
+const AppStackComp = createStackNavigator({
   Home,
   Product,
   Clientes,
   Nfe,
   WebView,
-  Emitter
+  Emitter,
+  ClientsList,
+  ProductsList,
+  InputNumber,
+  InputQuantity
 });
 const AuthStack = createStackNavigator({
   Login,
   Register,
-  Address
+  Address,
 });
 
 export const createRootNavigator = (signedIn = false, params = null) => {
   return createAppContainer(
     createSwitchNavigator(
       {
-        App: { screen: AppStack, path: '' },
-        Auth: { screen: AuthStack },
-
-      }, {
-      headerMode: "none",
-      mode: "modal",
-      initialRouteName: signedIn ? "App" : "Auth",
-      navigationOptions: {
-        gesturesEnabled: false
-      }
-    }
-    )
+        App: {screen: AppStackComp, path: ''},
+        Auth: {screen: AuthStack},
+      },
+      {
+        headerMode: 'none',
+        mode: 'modal',
+        initialRouteName: signedIn ? 'App' : 'Auth',
+        navigationOptions: {
+          gesturesEnabled: false,
+        },
+      },
+    ),
   );
 };

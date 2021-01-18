@@ -307,7 +307,7 @@ const Modal = ({ show = false }) => {
             <View style={{ width, height, justifyContent: "center", alignItems: "center", backgroundColor: "#111111BB", position: "absolute" }}>
                 <Text style={{ fontSize: 28, fontWeight: "bold", color: "#FFF" }}>
                     Emitindo Nota...
-            </Text>
+                </Text>
             </View>
         )
         : null
