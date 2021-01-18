@@ -86,9 +86,11 @@ export const styles = StyleSheet.create({
         // backgroundColor:'#fafa'
     },
     containerStats: {
+        // position: 'absolute',
+        zIndex:1000,
         flexDirection: "row",
         padding: 5,
-        width: '85%',
+        width: '100%',
         height: 60,
         backgroundColor: '#FFF',
         borderRadius: 5,
@@ -96,7 +98,9 @@ export const styles = StyleSheet.create({
         marginTop: -30,
         justifyContent: "space-between",
         paddingHorizontal: 35,
-        alignItems: "center"
+        alignItems: "center",
+        // borderWidth:1,
+
     },
     containerHome: {
         width,

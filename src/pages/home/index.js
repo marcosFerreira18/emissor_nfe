@@ -114,13 +114,7 @@ export default class Home extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-
-
-                    <LinearGradient
-                        colors={['#FFF', '#E5E7E5']}
-                        style={[styles.containerHome]}
-                    >
-                        <View style={styles.containerStats}>
+                    <View style={styles.containerStats}>
                             <View style={styles.statsItem}>
                                 <Text style={styles.statsTitle}>
                                     faturamento
@@ -138,6 +132,12 @@ export default class Home extends Component {
                                 </Text>
                             </View>
                         </View>
+
+                    <LinearGradient
+                        colors={['#FFF', '#E5E7E5']}
+                        style={[styles.containerHome]}
+                    >
+                       
                         {
                             this.state.data != null ?
 
