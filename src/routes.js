@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
 
 import Login from './pages/login';
@@ -15,21 +15,8 @@ import Nfe from './pages/nfe';
 import WebView from './pages/viewDanfe';
 import Register from './pages/register';
 import Address from './pages/address';
+import ListDanfs from './pages/listDanfs';
 import Upload from './pages/uploadImages';
-
-// import {EmmiterProvider} from './pages/emmiter2/emmiterContext';
-
-// const Emitter = () => (
-//   <EmmiterProvider>
-//     <Emitter1 />
-//   </EmmiterProvider>
-// );
-
-// const ClientsList = () => (
-//   <EmmiterProvider>
-//     <ClientsListComponent />
-//   </EmmiterProvider>
-// );
 
 import {
   createStackNavigator,
@@ -47,7 +34,8 @@ const AppStackComp = createStackNavigator({
   ClientsList,
   ProductsList,
   InputNumber,
-  InputQuantity
+  InputQuantity,
+  ListDanfs,
 });
 const AuthStack = createStackNavigator({
   Login,

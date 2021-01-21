@@ -19,15 +19,15 @@ import api from '../providers/api';
 import { encode } from 'base-64'
 
 export const login = async (username, password) => {
-    // console.log(`Sending ${username}`)
+    console.log(`Sending ${username}`)
     api.defaults.headers.common['Authorization'] = 'Basic ' + encode(username + ':' + password);
     console.log('Basic ' + encode(username + ':' + password))
     delete api.defaults.headers.common['token']
     return await api.post('/token/', {})
         .then(async ({ data }) => {
-            console.log("LOGIN", data)
+            console.log("LOGINAAA", data)
             return data
         }).catch((error) => {
-            console.log(error.response.data);
+            console.log(error.response);
         });
 }

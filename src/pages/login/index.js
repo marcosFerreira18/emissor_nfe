@@ -42,8 +42,9 @@ export default class Login extends Component {
           await AsyncStorage.setItem(TOKEN_KEY, JSON.stringify({
             token
           }))
-          await Api.loadConfig(token)
+          // await Api.loadConfig(token)
           // loginLead(user.name, user.email)
+          console.log('LOGIN REALIZADO')
           this.props.navigation.navigate('App')
         })
   }

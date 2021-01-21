@@ -29,10 +29,14 @@ export const EmmiterProvider = ({children}) => {
         },
       ],
     }).then(item => {
-      console.log('SUA NOTA EMITIDA COM SUCESSO: ', item);
+      if (!item) {
+        Alert.alert('Erro: Tente novamente mais tarde.');
+      } else {
+        console.log('SUA NOTA EMITIDA COM SUCESSO: ', item);
 
-      //   this.setState({showLoading: false});
-      //   this.exibirDanfe();
+        //   this.setState({showLoading: false});
+        //   this.exibirDanfe();
+      }
     });
   }
 

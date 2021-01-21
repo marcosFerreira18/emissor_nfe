@@ -7,9 +7,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('window');
 
 const ContainerFinish = () => {
-  const {client, product, price, quantity, EmitirNFE} = useContext(
-    EmmiterContext,
-  );
+  const {price, quantity, EmitirNFE} = useContext(EmmiterContext);
 
   const [labelPrice, setLabelPrice] = useState(
     'R$ ' +
@@ -40,7 +38,7 @@ const ContainerFinish = () => {
         </Text>
         <Text style={{color: '#FFF', fontSize: 34, fontWeight: 'bold'}}>
           {'R$ ' +
-            parseFloat((price * quantity)/100)
+            parseFloat((price * quantity) / 100)
               .toFixed(2)
               .toString()
               .replace('.', ',')}
