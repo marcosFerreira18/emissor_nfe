@@ -6,7 +6,7 @@ import {Text, View, Dimensions, Alert} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('window');
 
-const ContainerFinish = () => {
+const ContainerFinish = ({navigation}) => {
   const {price, quantity, EmitirNFE} = useContext(EmmiterContext);
 
   const [labelPrice, setLabelPrice] = useState(
@@ -45,7 +45,10 @@ const ContainerFinish = () => {
         </Text>
       </View>
       <TouchableOpacity
-        onPress={() => EmitirNFE()}
+        onPress={async () => {
+          // await setNavigation(navigation);
+          EmitirNFE(navigation);
+        }}
         style={{
           width: '90%',
           marginLeft: '5%',

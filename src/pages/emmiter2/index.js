@@ -16,7 +16,7 @@ const emmiter2 = ({navigation}) => {
         <ClientContainer navigation={navigation} />
         <ProductContainer  navigation={navigation} />
       </ScrollView>
-      <ContainerFinish />
+      <ContainerFinish navigation={navigation} />
     </View>
   );
 };

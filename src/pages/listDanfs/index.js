@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   FlatList,
@@ -9,7 +9,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import {loadHome} from '../../services/home';
+// import {loadHome} from '../../services/home';
+import EmmiterContext from '../emmiter2/emmiterContext';
 
 import LinearGradient from 'react-native-linear-gradient';
 import {cardEmission} from '../home/styles';
@@ -33,12 +34,7 @@ function Separator() {
 }
 
 const listDanfs = ({navigation}) => {
-  const [danfes, setDanfes] = useState([]);
-
-  // Similar ao componentDidMount e componentDidUpdate:
-  useEffect(() => {
-    loadHome().then(({emissions}) => setDanfes(emissions));
-  });
+  const {danfes} = useContext(EmmiterContext);
 
   function exibirDanfe(item) {
     navigation.navigate('WebView', {id: item.id});
@@ -69,5 +65,9 @@ const listDanfs = ({navigation}) => {
     </SafeAreaView>
   );
 };
+
+listDanfs['navigationOptions'] = screenProps => ({
+  title: 'Notas Emitidas',
+});
 
 export default listDanfs;

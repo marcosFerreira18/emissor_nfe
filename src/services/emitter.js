@@ -8,6 +8,7 @@ export const emitirNota = async (dados) => {
     // console.log(dados);
     // return dados
     api.defaults.headers.common['token'] = JSON.parse(data).token
+    // https://api.produtorlegal.com.br/api/v0/nfe/emission/test/
     return await api.post('/nfe/emission/', dados)
         .then(({ data }) => {
             // console.log(data)

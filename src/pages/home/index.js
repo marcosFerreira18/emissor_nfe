@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext, useEffect} from 'react';
 
 import {
   View,
@@ -18,7 +18,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-community/async-storage';
 const TOKEN_KEY = '@UserData';
 
-import {loadHome} from '../../services/home';
+// import {loadHome} from '../../services/home';
+import EmmiterContext from '../emmiter2/emmiterContext';
 
 const {height, width} = Dimensions.get('window');
 import {styles, footerMenu, cardEmission} from './styles.js';
@@ -38,176 +39,102 @@ function Item({name, img_link, date, price, openDanfe}) {
   );
 }
 
-function Separator() {
-  return <View style={{height: 10, width}} />;
-}
+const HOMEFunction = ({navigation}) => {
+  const {homeLoaded, dataHome} = useContext(EmmiterContext);
 
-export default class Home extends Component {
-  state = {
-    data: null,
-  };
+  useEffect(() => {
+    console.log('HAHAH',dataHome);
+  }, []);
 
-  static navigationOptions = ({navigation}) => {
-    const {params = {}} = navigation.state;
-    return {
-      headerTransparent: true,
-    };
-  };
-
-  async componentDidMount() {
-    this.setState({data: await loadHome()});
-
-    // console.log(this.state.data.emissions)
-    // console.log('Dados Home: ', this.state.data.company)
-  }
-
-  emitirNota = async () => {
-    Alert.alert(
-      'Sucesso',
-      'A NFe foi emitida corretamente',
-      [
-        {text: 'Ver Danfe', onPress: () => console.log('Ask me later pressed')},
-        {
-          text: 'Ok',
-          onPress: () => this.props.navigation.navigate('WebView'),
-          style: 'cancel',
-        },
-      ],
-      {cancelable: false},
-    );
-  };
 
   logOut = async () => {
     await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
-
-  exibirDanfe = item => {
-    console.log(item);
-    this.props.navigation.navigate('WebView', {id: item.id});
+    navigation.navigate('Auth');
   };
 
   atualizar = () => {
-    this.componentDidMount();
+    alert('a');
   };
 
-  render() {
-    return this.state.data != null ? (
-      <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
-        <View>
-          <View style={styles.containerTop}>
-            <View style={styles.infoEmpresa}>
-              <View>
-                <Text style={styles.nomeEmpresa}>Olá,</Text>
-                <Text style={styles.nomeUser}>{this.state.data.user.name}</Text>
-                <Text style={styles.nomeEmpresa}>
-                  {this.state.data.company.name}
-                </Text>
-              </View>
-              <TouchableOpacity
-                style={{marginTop: 20}}
-                onPress={() => {
-                  Alert.alert(
-                    'Atenção',
-                    'Deseja realmente sair do applicativo?',
-                    [
-                      {
-                        text: 'Sim',
-                        onPress: () => this.logOut(),
-                        style: 'cancel',
-                      },
-                      {text: 'Cancelar', onPress: console.log('abort')},
-                    ],
-                  );
-                }}>
-                <Text style={{fontSize: 11}}>ENCERRAR SESSAO</Text>
-              </TouchableOpacity>
+  return homeLoaded ? (
+    <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
 
-              {/*
-            <TouchableOpacity onPress={() => this.atualizar()}>
-              <Icon name="refresh" size={30} color="#FFF" />
-            </TouchableOpacity> */}
-            </View>
-            <Image
-              source={{uri: this.state.data.company.img_capa}}
-              style={styles.imgEmpresa}
-            />
-          </View>
-          {/*       
-        <LinearGradient
-          colors={['#FFF', '#FFF']}
-          style={[styles.containerHome]}> */}
-          <View style={styles.containerStats}>
-            <View style={styles.statsItem}>
-              <Text style={styles.statsTitle}>Faturamento</Text>
-              <Text style={styles.statsContent}>
-                {this.state.data.stats.billing}
-              </Text>
+      {/* <Text>aaaa</Text> */}
+       <View>
+        <View style={styles.containerTop}>
+          <View style={styles.infoEmpresa}>
+            <View>
+              <Text style={styles.nomeEmpresa}>Olá,</Text>
+              <Text style={styles.nomeUser}>{dataHome.user.name}</Text>
+              <Text style={styles.nomeEmpresa}>{dataHome.company.name}</Text>
             </View>
             <TouchableOpacity
+              style={{marginTop: 20}}
               onPress={() => {
-                this.props.navigation.navigate('ListDanfs');
-              }}
-              style={styles.statsItem}>
-              <Text style={styles.statsTitle}>Notas Emitidas</Text>
-              <Text style={styles.statsContent}>
-                {this.state.data.stats.emissions}
-              </Text>
+                Alert.alert(
+                  'Atenção',
+                  'Deseja realmente sair do applicativo?',
+                  [
+                    {
+                      text: 'Sim',
+                      onPress: () => logOut(),
+                      style: 'cancel',
+                    },
+                    {text: 'Cancelar', onPress: console.log('abort')},
+                  ],
+                );
+              }}>
+              <Text style={{fontSize: 11}}>ENCERRAR SESSAO</Text>
             </TouchableOpacity>
           </View>
+          <Image
+            source={{uri: dataHome.company.img_capa}}
+            style={styles.imgEmpresa}
+          />
         </View>
-        {/* {this.state.data != null ? (
-            <FlatList
-              style={{ backgroundColor: '#F10'}}
-              data={this.state.data.emissions}
-              contentContainerStyle={{
-                paddingBottom: 5,
-                paddingTop: 0,
-                marginTop: -10,
-              }}
-              ItemSeparatorComponent={Separator}
-              renderItem={({item}) => (
-                <TouchableOpacity onPress={() => this.exibirDanfe(item)}>
-                  <Item
-                    img_link={item.client.img_link}
-                    name={item.client.name}
-                    price={item.nfe.total}
-                    date={item.nfe.datetime}
-                  />
-                </TouchableOpacity>
-              )}
-              keyExtractor={item => item.id}
-            />
-          ) : null} */}
-
-        {/* <TouchableOpacity >
-                            <Text>
-                                Cadastrar Certificado
-                            </Text>
-                        </TouchableOpacity> */}
-        <View style={footerMenu.container}>
+        <View style={styles.containerStats}>
+          <View style={styles.statsItem}>
+            <Text style={styles.statsTitle}>Faturamento</Text>
+            <Text style={styles.statsContent}>{dataHome.stats.billing}</Text>
+          </View>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Emitter')}
-            style={footerMenu.nfeBtn}>
-            <Image source={iconNfe} style={footerMenu.iconNfe} />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Product')}
-            style={{alignItems: 'center'}}>
-            <Image source={iconProducts} style={footerMenu.iconMenu} />
-            <Text>Produtos</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Clientes')}
-            style={{alignItems: 'center'}}>
-            <Image source={iconClients} style={footerMenu.iconMenu} />
-            <Text>Clientes</Text>
+            onPress={() => {
+              navigation.navigate('ListDanfs');
+            }}
+            style={styles.statsItem}>
+            <Text style={styles.statsTitle}>Notas Emitidas</Text>
+            <Text style={styles.statsContent}>{dataHome.stats.emissions}</Text>
           </TouchableOpacity>
         </View>
-        {/* </LinearGradient> */}
-      </SafeAreaView>
-    ) : null;
-  }
-}
+      </View>
+
+      <View style={footerMenu.container}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Emitter')}
+          style={footerMenu.nfeBtn}>
+          <Image source={iconNfe} style={footerMenu.iconNfe} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Product')}
+          style={{alignItems: 'center'}}>
+          <Image source={iconProducts} style={footerMenu.iconMenu} />
+          <Text>Produtos</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Clientes')}
+          style={{alignItems: 'center'}}>
+          <Image source={iconClients} style={footerMenu.iconMenu} />
+          <Text>Clientes</Text>
+        </TouchableOpacity>
+      </View> 
+    </SafeAreaView>
+  ) : <Text>Buscandos Dados...</Text>;
+};
+
+HOMEFunction['navigationOptions'] = screenProps => ({
+  headerTransparent: true,
+});
+
+export default HOMEFunction;
