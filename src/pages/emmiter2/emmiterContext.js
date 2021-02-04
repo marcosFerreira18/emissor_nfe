@@ -108,6 +108,7 @@ export const EmmiterProvider = ({children}) => {
         setDataHome,
         setHomeLoaded,
         homeLoaded,
+        runrun
       }}>
       {children}
     </EmmiterContext.Provider>

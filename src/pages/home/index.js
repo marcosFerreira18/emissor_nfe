@@ -16,34 +16,37 @@ import iconProducts from '../../img/icon_product.png';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import AsyncStorage from '@react-native-community/async-storage';
-const TOKEN_KEY = '@UserData';
+// const TOKEN_KEY = '@UserData';
 
 // import {loadHome} from '../../services/home';
 import EmmiterContext from '../emmiter2/emmiterContext';
 
-const {height, width} = Dimensions.get('window');
+// const {height, width} = Dimensions.get('window');
 import {styles, footerMenu, cardEmission} from './styles.js';
 
 import LinearGradient from 'react-native-linear-gradient';
 
-function Item({name, img_link, date, price, openDanfe}) {
-  return (
-    <LinearGradient colors={['#FFF', '#E5E7E5']} style={cardEmission.container}>
-      <Image source={{uri: img_link}} style={cardEmission.clientImage} />
-      <View style={cardEmission.nfeInfo}>
-        <Text style={cardEmission.clientName}>{name}</Text>
-        <Text style={cardEmission.date}>{date}</Text>
-        <Text style={cardEmission.price}>{price}</Text>
-      </View>
-    </LinearGradient>
-  );
-}
+// function Item({name, img_link, date, price, openDanfe}) {
+//   return (
+//     <LinearGradient colors={['#FFF', '#E5E7E5']} style={cardEmission.container}>
+//       <Image source={{uri: img_link}} style={cardEmission.clientImage} />
+//       <View style={cardEmission.nfeInfo}>
+//         <Text style={cardEmission.clientName}>{name}</Text>
+//         <Text style={cardEmission.date}>{date}</Text>
+//         <Text style={cardEmission.price}>{price}</Text>
+//       </View>
+//     </LinearGradient>
+//   );
+// }
 
 const HOMEFunction = ({navigation}) => {
-  const {homeLoaded, dataHome} = useContext(EmmiterContext);
+  const {homeLoaded, dataHome, runrun} = useContext(EmmiterContext);
 
   useEffect(() => {
     console.log('HAHAH',dataHome);
+    if(!homeLoaded){
+      runrun()
+    }
   }, []);
 
 
@@ -130,7 +133,7 @@ const HOMEFunction = ({navigation}) => {
         </TouchableOpacity>
       </View> 
     </SafeAreaView>
-  ) : <Text>Buscandos Dados...</Text>;
+  ) : <SafeAreaView style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>Buscandos Dados...</Text></SafeAreaView>;
 };
 
 HOMEFunction['navigationOptions'] = screenProps => ({
